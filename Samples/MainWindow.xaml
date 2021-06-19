@@ -9,7 +9,7 @@
         Title="Samples" Height="450" Width="800">
     <Border Padding="10">
         <TabControl>
-            <TabItem FontSize="12" Header="Loading Indicator">
+            <TabItem FontSize="12" Header="Loading Indicators">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -20,10 +20,13 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <sans:LoadingIndicator Mode="ArcsRing" Foreground="Green" Width="70" Height="70" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Mode="Ring" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Grid.Column="1" Mode="DoubleBounce" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Grid.Column="2" Mode="FlipPlane" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Grid.Column="3" Mode="Pulse" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Grid.Row="1" Mode="ThreeDots" Foreground="Green" Width="100" Height="40" SpeedRatio="1"/>
+                    <sans:LoadingIndicator Grid.Column="1" Grid.Row="1" Mode="Wave" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
                 </Grid>
             </TabItem>
         </TabControl>
