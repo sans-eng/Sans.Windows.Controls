@@ -1,0 +1,87 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ex="http://schemas.microsoft.com/expression/2010/drawing"
+     xmlns:ext="clr-namespace:Sans.Windows.Controls.Extension"
+    xmlns:local="clr-namespace:Sans.Windows.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Themes/Colors.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingArcs.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingArcsRing.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingDoubleBounce.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingFlipPlane.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingPulse.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingRing.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingThreeDots.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingWave.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="LoadingIndicatorArcsStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorArcsStyleKey}"/>
+    <Style x:Key="LoadingIndicatorArcsRingStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorArcsRingStyleKey}"/>
+    <Style x:Key="LoadingIndicatorDoubleBounceStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorDoubleBounceStyleKey}"/>
+    <Style x:Key="LoadingIndicatorFlipPlaneStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorFlipPlaneStyleKey}"/>
+    <Style x:Key="LoadingIndicatorPulseStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorPulseStyleKey}"/>
+    <Style x:Key="LoadingIndicatorRingStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorRingStyleKey}"/>
+    <Style x:Key="LoadingIndicatorThreeDotsStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorThreeDotsStyleKey}"/>
+    <Style x:Key="LoadingIndicatorWaveStyle" TargetType="{x:Type local:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorWaveStyleKey}"/>
+
+    <Style TargetType="{x:Type local:Level}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Level}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <ex:Arc x:Name="PART_BackIndicator" StartAngle="-180" EndAngle="180"  Stretch="None" IsHitTestVisible="False" StrokeThickness="10" />
+                            <ex:Arc x:Name="PART_Indicator" StartAngle="-180"  Stretch="None" IsHitTestVisible="False" StrokeThickness="10" />
+                            <TextBlock x:Name="PART_Value" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}" FontFamily="{TemplateBinding FontFamily}" FontStyle="{TemplateBinding FontStyle}"/>
+
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:LevelBar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:LevelBar}">
+                    <Grid  MinHeight="4">
+                        <Border x:Name="MaskBorder" CornerRadius="{TemplateBinding CornerRadius}"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Canvas x:Name="PART_LabelContainer"/>
+                            <Border BorderBrush="Green" CornerRadius="20" Grid.Row="1" Margin="10,0,10,0">
+                                <Grid>
+                                    <Border Margin="0" Background="{TemplateBinding Background}"  x:Name="PART_Track"
+                      BorderThickness="0">
+                                    </Border>
+                                    <Border Margin="0" CornerRadius="10" x:Name="PART_Indicator"
+                      HorizontalAlignment="Left">
+                                        <Grid>
+                                            <Canvas x:Name="PART_TickMarkContainer"/>
+                                            <Canvas  x:Name="PART_LimitMarkContainer"/>
+                                            <Border x:Name="PART_GlowRect"
+                             HorizontalAlignment="Left"
+                             Background="{x:Null}" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:LoadingIndicator}" BasedOn="{ext:MultiStyle LoadingIndicatorArcsStyle LoadingIndicatorArcsRingStyle LoadingIndicatorDoubleBounceStyle LoadingIndicatorFlipPlaneStyle LoadingIndicatorPulseStyle LoadingIndicatorRingStyle LoadingIndicatorThreeDotsStyle LoadingIndicatorWaveStyle}" />
+
+</ResourceDictionary>

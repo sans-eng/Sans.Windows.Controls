@@ -1,0 +1,31 @@
+﻿<Window x:Class="Samples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sans="clr-namespace:Sans.Windows.Controls;assembly=Sans.Windows.Controls"
+        xmlns:local="clr-namespace:Samples"
+        mc:Ignorable="d"
+        Title="Samples" Height="450" Width="800">
+    <Border Padding="10">
+        <TabControl>
+            <TabItem FontSize="12" Header="Loading Indicator">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <sans:LoadingIndicator Mode="ArcsRing" Foreground="Green" Width="70" Height="70" SpeedRatio="1"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Border>
+</Window>
