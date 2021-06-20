@@ -56,14 +56,6 @@
     <Compile Include="LoadingIndicator\LoadingIndicatorMode.cs" />
     <Compile Include="Extension\MultiStyleExtension.cs" />
     <Compile Include="Utils\VisualStateUtilities.cs" />
-    <Page Include="Styles\LoadingArcs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\LoadingArcsRing.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\LoadingDoubleBounce.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

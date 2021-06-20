@@ -12,12 +12,6 @@ namespace Sans.Windows.Controls
         [Description("LoadingIndicatorWaveStyle")]
         Wave,
 
-       // [Description("LoadingIndicatorArcsStyle")]
-      //  Arcs,
-
-      //  [Description("LoadingIndicatorArcsRingStyle")]
-     //   ArcsRing,
-
         [Description("LoadingIndicatorDoubleBounceStyle")]
         DoubleBounce,
 
