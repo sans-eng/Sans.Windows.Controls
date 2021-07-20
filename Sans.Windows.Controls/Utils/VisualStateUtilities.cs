@@ -1,4 +1,4 @@
-﻿using Sans.Windows.Controls.Extension;
+﻿using Sans.Windows.Controls.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
