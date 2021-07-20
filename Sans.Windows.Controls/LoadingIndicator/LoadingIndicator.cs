@@ -1,4 +1,4 @@
-﻿using Sans.Windows.Controls.Extension;
+﻿using Sans.Windows.Controls.Extensions;
 using Sans.Windows.Controls.Utils;
 using System;
 using System.Windows;
