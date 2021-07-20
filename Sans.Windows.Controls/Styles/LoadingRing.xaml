@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converter="clr-namespace:Sans.Windows.Controls.Converter"
+                    xmlns:converter="clr-namespace:Sans.Windows.Controls.Converters"
                     xmlns:controls="clr-namespace:Sans.Windows.Controls">
     
     <converter:ArithmeticOperationConverter x:Key="ArithmeticOperationConverter"/>
