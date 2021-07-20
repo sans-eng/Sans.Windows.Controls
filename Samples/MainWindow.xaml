@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sans="clr-namespace:Sans.Windows.Controls;assembly=Sans.Windows.Controls"
+        xmlns:ex="http://schemas.microsoft.com/expression/2010/drawing"
         xmlns:local="clr-namespace:Samples"
         mc:Ignorable="d"
         Title="Samples" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="WarningValidationTemplate">
+            <Border Background="Orange" CornerRadius="5" Padding="5" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Min" FontSize="10" Foreground="White"/>
+                    <TextBlock Text="{Binding Min}" FontStyle="Italic" FontWeight="Bold" FontSize="10" Foreground="White"/>
+                    <TextBlock Margin="5,0,0,0" Text="Max " FontSize="10" Foreground="White"/>
+                    <TextBlock Text="{Binding Max}" FontStyle="Italic" FontWeight="Bold" FontSize="10" Foreground="White"/>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ErrorValidationTemplate">
+            <Border Background="Red" CornerRadius="5" Padding="5" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Please input numeric value between " FontSize="10" Foreground="White"/>
+                    <TextBlock Text="{Binding Min}" FontStyle="Italic" FontWeight="Bold" FontSize="10" Foreground="White"/>
+                    <TextBlock Text=" ~ " FontSize="10" Foreground="White"/>
+                    <TextBlock Text="{Binding Max}" FontStyle="Italic" FontWeight="Bold" FontSize="10" Foreground="White"/>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
     <Border Padding="10">
         <TabControl>
             <TabItem FontSize="12" Header="Loading Indicators">
@@ -28,6 +51,69 @@
                     <sans:LoadingIndicator Grid.Row="1" Mode="ThreeDots" Foreground="Green" Width="100" Height="40" SpeedRatio="1"/>
                     <sans:LoadingIndicator Grid.Column="1" Grid.Row="1" Mode="Wave" Foreground="Green" Width="50" Height="50" SpeedRatio="1"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Levels">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <sans:LevelBar Maximum="100" Minimum="0" UpperLimit="80" LowerLimit="20" CornerRadius="10" LabelOrientation="Vertical" Height="50" Background="DarkBlue" Orientation="Vertical" Value="10">
+                        <sans:LevelBar.Style>
+                            <Style TargetType="{x:Type sans:LevelBar}">
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Value" Duration="0:0:0:5" From="0" To="100" RepeatBehavior="Forever" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </sans:LevelBar.Style>
+                    </sans:LevelBar>
+                    <!--<sans:Level Grid.Row="1" Height="100" Width="100" Thickness="20"/>-->
+                    <!--<Grid Grid.Row="1" Width="150" Height="150">
+                        <ex:Arc Grid.Row="1" Height="100" Width="105" Fill="Blue" ArcThickness="20" StartAngle="210" EndAngle="-100"/>
+                    </Grid>-->
+
+                    <Path Grid.Row="1" Stroke="Blue" Width="100" Height="100" StrokeThickness="10">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="40,90">
+                                    <ArcSegment SweepDirection="Clockwise" RotationAngle="0" IsLargeArc="True" Size="40, 40" Point="60,90" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <!--<Path Grid.Row="1" Stroke="Green" Width="100" Height="100" StrokeThickness="10">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="40,90">
+                                    <ArcSegment SweepDirection="Clockwise" RotationAngle="0" IsLargeArc="True" Size="40, 40" Point="60,90" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="Services">
+                <Border Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Baloon service"/>
+                        <TextBox Margin="0,0,0,10" FontSize="14" Text="Click here to show baloon" sans:BaloonService.IsEnabled="True" sans:BaloonService.CloseOnEventName="LostKeyboardFocus" sans:BaloonService.ShowOnEventName="PreviewMouseDown">
+                            <TextBox.ToolTip>
+                                <sans:Baloon HeaderText="This is baloon!.">
+                                    <TextBlock Text="This is baloon of text box"/>
+                                </sans:Baloon>
+                            </TextBox.ToolTip>
+                        </TextBox>
+                        <TextBlock Text="Validation service"/>
+                        <TextBox Text="Input double type text here between 20~200" sans:TextBoxInputValidation.IsEnabled="True" sans:TextBoxInputValidation.ValidationType="FloatingPoint" sans:TextBoxInputValidation.Max="200" sans:TextBoxInputValidation.Min="20"
+                                 sans:TextBoxInputValidation.ErrorTemplate="{StaticResource ErrorValidationTemplate}" sans:TextBoxInputValidation.WarningTemplate="{StaticResource WarningValidationTemplate}"/>
+                    </StackPanel>
+                </Border>
             </TabItem>
         </TabControl>
     </Border>
