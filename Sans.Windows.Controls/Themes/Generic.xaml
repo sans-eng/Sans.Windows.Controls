@@ -2,11 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ex="http://schemas.microsoft.com/expression/2010/drawing"
-     xmlns:ext="clr-namespace:Sans.Windows.Controls.Extension"
+     xmlns:ext="clr-namespace:Sans.Windows.Controls.Extensions"
     xmlns:local="clr-namespace:Sans.Windows.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Themes/Colors.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Themes/Brushes.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingDoubleBounce.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingFlipPlane.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/Sans.Windows.Controls;component/Styles/LoadingPulse.xaml"/>
@@ -54,9 +54,9 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Canvas x:Name="PART_LabelContainer"/>
-                            <Border BorderBrush="Green" CornerRadius="20" Grid.Row="1" Margin="10,0,10,0">
+                            <Border BorderBrush="Green" CornerRadius="{TemplateBinding CornerRadius}" Grid.Row="1" Margin="10,0,10,0">
                                 <Grid>
-                                    <Border Margin="0" Background="{TemplateBinding Background}"  x:Name="PART_Track"
+                                    <Border Margin="0" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}"  x:Name="PART_Track"
                       BorderThickness="0">
                                     </Border>
                                     <Border Margin="0" CornerRadius="10" x:Name="PART_Indicator"
@@ -79,5 +79,26 @@
     </Style>
 
     <Style TargetType="{x:Type local:LoadingIndicator}" BasedOn="{ext:MultiStyle LoadingIndicatorDoubleBounceStyle LoadingIndicatorFlipPlaneStyle LoadingIndicatorPulseStyle LoadingIndicatorRingStyle LoadingIndicatorThreeDotsStyle LoadingIndicatorWaveStyle}" />
+
+    <Style TargetType="{x:Type local:Baloon}">
+        <Setter Property="Background" Value="{StaticResource DialogBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource OnDialogBackgroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Baloon}">
+                    <Border Padding="10" Margin="5" CornerRadius="20" Background="{TemplateBinding Background}" MinWidth="50" MinHeight="50" MaxWidth="200" MaxHeight="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Margin="0,0,0,10" Text="{TemplateBinding HeaderText}" FontStyle="Italic" FontWeight="Bold"/>
+                            <ContentPresenter Grid.Row="1"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -2,4 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <SolidColorBrush x:Key="AccentColorBrush" Color="#CC119EDA"/>
+
+    <Color x:Key="DialogBackgroundColor">#CC636363</Color>
+    <Color x:Key="OnDialogBackgroundColor">White</Color>
+    
+    <Color x:Key="BackgroundColor">White</Color>
+    <Color x:Key="OnBackgroundColor">#303030</Color>
+
+    <Color x:Key="SurfaceColor">White</Color>
+    <Color x:Key="OnSurfaceColor">#303030</Color>
+    
+    
 </ResourceDictionary>
