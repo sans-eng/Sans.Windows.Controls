@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Linq;
+using System;
 
 namespace Sans.Windows.Controls
 {
@@ -297,7 +298,8 @@ namespace Sans.Windows.Controls
         public static readonly DependencyProperty LowerLimitProperty = DependencyProperty.Register(nameof(LowerLimit), typeof(double), typeof(LevelBar), new PropertyMetadata(0.0, OnLowerLimitPropertyChanged));
 
         [Description("Gets or sets a corner radius of the level bar."), Category(nameof(LevelBar))]
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(LevelBar), null);
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(LevelBar),
+            new PropertyMetadata());
 
         [Description("Gets or sets a style of the label."), Category(nameof(LevelBar))]
         public static readonly DependencyProperty LabelStyleProperty = DependencyProperty.Register(nameof(LabelStyle), typeof(Style), typeof(LevelBar), null);
@@ -332,12 +334,6 @@ namespace Sans.Windows.Controls
 
             sender.OnMinorTickMarkCountChanged((int)args.OldValue, (int)args.NewValue);
         }
-        private static void OnCornerRadiusPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-        {
-            if (!(dependencyObject is LevelBar sender)) return;
-
-            sender.OnCornerRadiusChanged((double)args.OldValue, (double)args.NewValue);
-        }
         private static void OnLabelOrientationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
         {
             if (!(dependencyObject is LevelBar sender)) return;
@@ -363,7 +359,7 @@ namespace Sans.Windows.Controls
         {
             base.OnValueChanged(oldValue, newValue);
             UpdateProgress();
-            UpdateCornerRadius();
+            UpdateIndicatorCornerRadius();
         }
         protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
         {
@@ -407,10 +403,6 @@ namespace Sans.Windows.Controls
         protected virtual void OnMinorTickMarkCountChanged(int oldValue, int newValue)
         {
             UpdateTickMark();
-        }
-        protected virtual void OnCornerRadiusChanged(double oldValue, double newValue)
-        {
-            UpdateCornerRadius();
         }
         protected virtual void OnLabelOrientationChanged(Orientation oldValue, Orientation newValue)
         {
@@ -512,12 +504,12 @@ namespace Sans.Windows.Controls
                        
                     if(LabelOrientation == Orientation.Vertical)
                     {
-                        RotateTransform rotateTransform = new RotateTransform(90);
-                        label.LayoutTransform = rotateTransform;
+                        label.LayoutTransform = new RotateTransform(90);
+
+                        LabelContainer.Height = formattedText.Width + (formattedText.Width * 0.1);
 
                         Canvas.SetLeft(label, xPos - (formattedText.Height / 2) + 10);
-                        Canvas.SetTop(label, 0);
-                        LabelContainer.Height = formattedText.Width + (formattedText.Width * 0.1);
+                        Canvas.SetTop(label, formattedText.Height  - LabelContainer.Height);
                     }
                     else
                     {
@@ -561,20 +553,17 @@ namespace Sans.Windows.Controls
                 LimitMarkContainer.UpdateLayout();
             }
         }
-        private void UpdateCornerRadius()
+        private void UpdateIndicatorCornerRadius()
         {
             if (Indicator != null && Track != null)
             {
                 if (Value >= Maximum) Indicator.CornerRadius = CornerRadius;
                 else Indicator.CornerRadius = new CornerRadius(CornerRadius.TopLeft, 0, 0, CornerRadius.BottomLeft);
-
-
-                Track.CornerRadius = CornerRadius;
             }
         }
         private void Initialize()
         {
-            UpdateCornerRadius();
+            UpdateIndicatorCornerRadius();
             UpdateProgress();
             UpdateLabel();
             UpdateTickMark();
