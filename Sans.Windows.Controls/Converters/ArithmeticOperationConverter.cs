@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Sans.Windows.Controls.Converter
+namespace Sans.Windows.Controls.Converters
 {
     public class ArithmeticOperationConverter : IValueConverter
     {

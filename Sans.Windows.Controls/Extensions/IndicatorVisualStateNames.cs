@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace Sans.Windows.Controls.Extension
+namespace Sans.Windows.Controls.Extensions
 {
     internal sealed class IndicatorVisualStateNames : MarkupExtension
     {

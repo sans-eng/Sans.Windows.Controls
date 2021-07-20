@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Markup;
 
-namespace Sans.Windows.Controls.Extension
+namespace Sans.Windows.Controls.Extensions
 {
     [MarkupExtensionReturnType(typeof(Style))]
     public class MultiStyleExtension : MarkupExtension
